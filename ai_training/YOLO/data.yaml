@@ -1,0 +1,6 @@
+train: DataYOLO/train/images
+val: DataYOLO/valid/images
+test: DataYOLO/test/images
+
+nc: 4
+names: ['Coffee','Wheat','Admin','Strange']
