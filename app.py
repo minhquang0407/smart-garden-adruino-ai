@@ -55,7 +55,7 @@ if 'last_interaction_time' not in st.session_state: st.session_state.last_intera
 if 'last_sent_crop_time' not in st.session_state: st.session_state.last_sent_crop_time = 0
 
 # --- CẤU HÌNH HẰNG SỐ ---
-MODEL_PATH = 'best.pt'
+MODEL_PATH = 'runs/detect/train/weights/best.pt'
 TIMEOUT_SECONDS = 5 * 60
 SECURITY_MAP = {'Others': 'R', 'Admin': 'A', 'Strange': 'L'}
 CROP_MAP_SEND = {'Coffee': '0', 'wheat': '1'}
@@ -245,4 +245,5 @@ if not stop_cam:
 
     cap.release()
 else:
+
     st.warning("Camera đã tắt.")
