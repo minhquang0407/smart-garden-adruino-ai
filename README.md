@@ -9,7 +9,7 @@
 
 **Smart Garden AI** là một hệ thống IoT nông nghiệp công nghệ cao, giải quyết bài toán tưới tiêu tự động dựa trên dữ liệu cảm biến và hình ảnh thực tế.
 
-Dự án tạo ra sự đột phá bằng cách kết hợp **Edge AI (Trí tuệ nhân tạo tại biên)** chạy trực tiếp trên vi điều khiển Arduino Uno (Random Forest) và **Computer Vision (Thị giác máy tính)** chạy trên máy tính (YOLOv11), mang lại khả năng chăm sóc cây trồng chính xác và bảo mật an ninh cho khu vườn.
+Dự án tạo ra sự đột phá bằng cách kết hợp **Edge AI (Trí tuệ nhân tạo tại biên)** chạy trực tiếp trên vi điều khiển Arduino Uno (Random Forest) và **Computer Vision (Thị giác máy tính)** chạy trên máy tính (YOLOv8), mang lại khả năng chăm sóc cây trồng chính xác và bảo mật an ninh cho khu vườn.
 
 ---
 
@@ -20,7 +20,7 @@ Dự án tạo ra sự đột phá bằng cách kết hợp **Edge AI (Trí tu�
 - Tự động ra quyết định tưới dựa trên: *Độ ẩm đất, Nhiệt độ, Độ ẩm không khí, Loại cây*.
 - Hoạt động độc lập ngay cả khi mất kết nối với máy tính.
 
-### 2. 👁️ Computer Vision (YOLOv11)
+### 2. 👁️ Computer Vision (YOLOv8)
 - Tự động nhận diện loại cây (Lúa, Ngô, Cà phê...) qua Camera và gửi lệnh cấu hình xuống Arduino.
 - **Tính năng An ninh:**
     - Nhận diện **Chủ nhân**: Mở khóa quyền điều khiển (Admin Mode).
