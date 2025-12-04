@@ -69,7 +69,7 @@ Dự án tạo ra sự đột phá bằng cách kết hợp **Edge AI (Trí tu�
     - Relay: D6
     - Buttons: D10, D11
     - LCD: I2C (SDA/SCL)
-2.  Mở `SmartGarden_Arduino/main.ino` bằng Arduino IDE.
+2.  Mở `smart_irrigation_with_adruinoUno/arduino_firmware/main.ino` bằng Arduino IDE.
 3.  Cài đặt thư viện: `LiquidCrystal_I2C`, `DHT sensor library`.
 4.  Nạp code vào mạch.
 
@@ -82,7 +82,7 @@ Dự án tạo ra sự đột phá bằng cách kết hợp **Edge AI (Trí tu�
 3.  Kết nối Arduino với máy tính qua cổng USB.
 4.  Chạy ứng dụng:
     ```bash
-    streamlit run app.py
+    streamlit run src/app.py
     ```
 
 ---
@@ -91,12 +91,14 @@ Dự án tạo ra sự đột phá bằng cách kết hợp **Edge AI (Trí tu�
 
 ### Random Forest (Tưới tiêu)
 * **Dataset:** Dữ liệu thu thập thực tế + Chuyên gia giả lập (Expert System).
+* **Dataset Path:** smart_irrigation_with_adruinoUno\ai_training\RandomForest\irrigation.csv 
 * **Validation:** Sử dụng **Stratified 5-Fold Cross-Validation** để đánh giá độ ổn định.
 * **Cấu hình tối ưu:** `n_estimators=5`, `max_depth=10` (Độ chính xác ~92.66% trên tập kiểm thử).
 * **Triển khai:** Model được huấn luyện lại trên 100% dữ liệu và transpile sang C (`model.h`).
 
 ### YOLOv8 (Thị giác)
 * **Dataset:** Tự thu thập và gán nhãn thủ công cho các lớp: *Coffee, Wheat, Owner, Stranger*.
+* **Dataset Link: https://drive.google.com/file/d/1o6WhIhmDbxElmCeNoEqlcfEF4jM2tlPX/view?usp=sharing**
 * **Training:** Fine-tuning từ `yolo8n.pt`.
 
 ---
