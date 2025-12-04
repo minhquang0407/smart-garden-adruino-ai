@@ -82,7 +82,7 @@ Dự án tạo ra sự đột phá bằng cách kết hợp **Edge AI (Trí tu�
 3.  Kết nối Arduino với máy tính qua cổng USB.
 4.  Chạy ứng dụng:
     ```bash
-    streamlit run app_gui.py
+    streamlit run app.py
     ```
 
 ---
