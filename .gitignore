@@ -1,0 +1,12 @@
+AI_Training/YOLO/datasets/
+AI_Training/YOLO/runs/
+AI_Training/RandomForest/__pycache__/
+
+.venv/
+venv/
+env/
+
+.idea/
+.vscode/
+*.pyc
+

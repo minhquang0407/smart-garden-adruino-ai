@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 4
+names: ['Coffee','Wheat','Admin','Strange']
+
+roboflow:
+  workspace: langtucodon-arii7
+  project: wheat-l15yi-tdfm0
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/langtucodon-arii7/wheat-l15yi-tdfm0/dataset/1
