@@ -36,9 +36,7 @@ CROP_NAMES_DISPLAY = ["Coffee", "Flowers", "Groundnuts", "Maize", "Paddy", "Pota
 def load_owner_face():
     if st.session_state.owner_encoding is None:
         try:
-            # Load ảnh chủ nhân từ file
             image = face_recognition.load_image_file("owner.jpg")
-            # Mã hóa khuôn mặt thành vector số
             encodings = face_recognition.face_encodings(image)
             if len(encodings) > 0:
                 st.session_state.owner_encoding = encodings[0]
@@ -50,7 +48,6 @@ def load_owner_face():
         except Exception as e:
             st.error(f"Lỗi Face ID: {e}")
 
-# Gọi hàm nạp ngay khi chạy
 load_owner_face()
 
 # --- SIDEBAR ---
@@ -93,8 +90,8 @@ def set_state(action_name):
             except: pass
         st.session_state.current_state = new_code
 
-# --- UI CHÍNH ---
-st.title("🌱 HỆ THỐNG GIÁM SÁT TƯỚI TIÊU (DYNAMIC AI)")
+# --- UI ---
+st.title("🌱 HỆ THỐNG GIÁM SÁT TƯỚI TIÊU")
 col_cam, col_data = st.columns([2, 1])
 with col_cam:
     st.subheader("Camera Giám Sát")
@@ -151,7 +148,7 @@ if not stop_cam:
                 color_status = "inverse"
                 cv2.putText(frame, "LOCKED", (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
                 for (top, right, bottom, left) in face_locations:
-                    top *= 4; right *= 4; bottom *= 4; left *= 4 # Scale lại toạ độ
+                    top *= 4; right *= 4; bottom *= 4; left *= 4
                     cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)
 
             else:
