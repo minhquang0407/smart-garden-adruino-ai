@@ -1,0 +1,9 @@
+streamlit
+ultralytics
+opencv-python
+pyserial
+pandas
+numpy
+scikit-learn
+m2cgen
+face-recognition
