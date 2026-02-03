@@ -1,4 +1,5 @@
-# Smart Garden AI - Multi-Sensory Intelligent Irrigation System
+# Smart Garden AI 
+**Multi-Sensory Intelligent Irrigation System**
 
 ## Overview
 
