@@ -1,162 +1,115 @@
-<img width="1824" height="796" alt="image" src="https://github.com/user-attachments/assets/c2d5da99-91cd-48e3-aa9d-fbfbd1f527ac" /> 
+# Smart Garden AI - Multi-Sensory Intelligent Irrigation System
 
-# 🌱 Smart Garden AI - Hệ Thống Tưới Tiêu Thông Minh Đa Giác Quan
+## Overview
 
-![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
-![Arduino](https://img.shields.io/badge/Hardware-Arduino_Uno-teal.svg)
-![AI](https://img.shields.io/badge/AI-Random_Forest_%26_YOLOv11-orange.svg)
-![Dashboard](https://img.shields.io/badge/Dashboard-Streamlit-red.svg)
+**Smart Garden AI** is a high-tech IoT agricultural system that automates irrigation using sensor data and real-time computer vision.
 
-## 📖 Giới thiệu (Overview)
+This project implements a hybrid architecture combining **Edge AI** (Random Forest on Arduino Uno) and **Computer Vision** (YOLOv8 on PC) to ensure precise plant care and physical security.
 
-**Smart Garden AI** là một hệ thống IoT nông nghiệp công nghệ cao, giải quyết bài toán tưới tiêu tự động dựa trên dữ liệu cảm biến và hình ảnh thực tế.
+## Key Features
 
-Dự án tạo ra sự đột phá bằng cách kết hợp **Edge AI (Trí tuệ nhân tạo tại biên)** chạy trực tiếp trên vi điều khiển Arduino Uno (Random Forest) và **Computer Vision (Thị giác máy tính)** chạy trên máy tính (YOLOv8), mang lại khả năng chăm sóc cây trồng chính xác và bảo mật an ninh cho khu vườn.
+### 1. Edge AI on Microcontroller (Arduino)
 
----
+* **Embedded ML:** Runs an optimized Random Forest algorithm directly on the ATmega328P chip (32KB Flash).
+* **Autonomous Logic:** Decides irrigation cycles based on soil moisture, temperature, air humidity, and plant type without requiring PC connectivity.
 
-## 🚀 Tính năng Nổi bật (Key Features)
+### 2. Computer Vision (YOLOv8)
 
-### 1. 🧠 Edge AI trên Vi điều khiển (Arduino)
-- Sử dụng thuật toán **Random Forest (Mini)** đã được tối ưu hóa để chạy trên chip ATmega328P (32KB Flash).
-- Tự động ra quyết định tưới dựa trên: *Độ ẩm đất, Nhiệt độ, Độ ẩm không khí, Loại cây*.
-- Hoạt động độc lập ngay cả khi mất kết nối với máy tính.
+* **Plant Recognition:** Identifies crop types (e.g., Rice, Corn, Coffee) via camera and automatically configures the Arduino parameters.
+* **Security System:**
+* **Face ID:** Grants "Admin Mode" control upon recognizing the owner.
+* **Intrusion Detection:** Automatically locks the system and disables pumps if a stranger is detected.
 
-### 2. 👁️ Computer Vision (YOLOv8)
-- Tự động nhận diện loại cây (Lúa, Ngô, Cà phê...) qua Camera và gửi lệnh cấu hình xuống Arduino.
-- **Tính năng An ninh:**
-    - Nhận diện **Chủ nhân**: Mở khóa quyền điều khiển (Admin Mode).
-    - Nhận diện **Người lạ**: Tự động khóa hệ thống, ngắt bơm khẩn cấp (Security Lock).
 
-### 3. 📊 Dashboard Giám sát (Streamlit)
-- Giao diện Web App hiện đại, hiển thị biểu đồ thời gian thực (Real-time plotting).
-- Điều khiển bật/tắt bơm, chuyển chế độ từ xa.
-- Theo dõi trạng thái kết nối và log hoạt động.
 
-### 4. 🛡️ Cơ chế An toàn & Logic
-- **Non-blocking Timer:** Hệ thống đa nhiệm, không dùng `delay()`.
-- **Anti-Chattering:** Chống nhiễu bơm bằng chu trình tưới thông minh (Holding Cycle).
-- **Session Timeout:** Tự động khóa quyền Admin sau 5 phút không tương tác.
+### 3. Monitoring Dashboard (Streamlit)
 
----
+* Modern web interface for real-time data plotting.
+* Remote control capabilities (pump toggle, mode switching).
+* Connection status monitoring and activity logging.
 
-## 🛠️ Kiến trúc Hệ thống (System Architecture)
+### 4. Safety & Logic Mechanisms
 
-### Phần cứng (Hardware)
-* **Vi điều khiển:** Arduino Uno R3.
-* **Cảm biến:**
-    * Capacitive Soil Moisture Sensor v1.2 (Độ ẩm đất).
-    * DHT11 (Nhiệt độ & Độ ẩm không khí).
-* **Cơ cấu chấp hành:** Relay 5V + Máy bơm mini.
-* **Hiển thị:** LCD 1602 I2C.
-* **Input:** 2 Nút bấm (Mode & Action).
+* **Non-blocking Timer:** Multitasking architecture eliminating `delay()` usage.
+* **Anti-Chattering:** Prevents pump hardware damage using intelligent holding cycles.
+* **Session Timeout:** Auto-locks Admin privileges after 5 minutes of inactivity.
 
-### Công nghệ Phần mềm (Tech Stack)
-* **Python:**
-    * `Ultralytics YOLOv11`: Nhận diện vật thể.
-    * `Scikit-learn`: Huấn luyện mô hình Random Forest.
-    * `m2cgen`: Chuyển đổi model Python sang C++.
-    * `Streamlit`: Giao diện người dùng.
-    * `PySerial`: Giao tiếp UART.
-* **Arduino (C++):** Xử lý logic thời gian thực, đọc cảm biến.
+## System Architecture
 
----
+### Hardware
 
-## ⚙️ Cài đặt & Hướng dẫn (Installation)
+* **Microcontroller:** Arduino Uno R3.
+* **Sensors:** Capacitive Soil Moisture Sensor v1.2 (A0), DHT11 (D4).
+* **Actuators:** Relay 5V (D6), Mini Pump.
+* **Interface:** LCD 1602 I2C, Control Buttons (D10, D11).
 
-### 1. Phần cứng (Arduino)
-1.  Kết nối cảm biến theo sơ đồ:
-    - Soil Sensor: A0
-    - DHT11: D4
-    - Relay: D6
-    - Buttons: D10, D11
-    - LCD: I2C (SDA/SCL)
-2.  Mở `smart_irrigation_with_adruinoUno/arduino_firmware/main.ino` bằng Arduino IDE.
-3.  Cài đặt thư viện: `LiquidCrystal_I2C`, `DHT sensor library`.
-4.  Nạp code vào mạch.
+### Tech Stack
 
-### 2. Phần mềm (Python Setup)
+* **Python:** `Ultralytics YOLOv11` (Vision), `Scikit-learn` (Training), `m2cgen` (Model Transpilation), `Streamlit` (UI), `PySerial` (UART).
+* **C++ (Arduino):** Real-time sensor processing and actuator control.
 
-Dự án yêu cầu **Python 3.10** hoặc **3.11** (Khuyến nghị).
+## AI Methodology
 
-#### Bước 1: Cài đặt các thư viện cơ bản
-Mở Terminal tại thư mục dự án và chạy lệnh:
+### Random Forest (Irrigation Logic)
+
+* **Data Source:** Real-world sensor data combined with Expert System inputs.
+* **Model:** Validated via Stratified 5-Fold Cross-Validation (Accuracy ~92.66%).
+* **Deployment:** Transpiled from Python to C code (`model.h`) for embedded execution.
+
+### YOLOv8 (Vision)
+
+* **Dataset:** Custom labeled dataset for classes: *Coffee, Wheat, Owner, Stranger*.
+* **Training:** Fine-tuned on the `yolo8n.pt` base model.
+
+## Installation
+
+### 1. Hardware Setup (Arduino)
+
+1. Connect sensors: Soil (A0), DHT11 (D4), Relay (D6), Buttons (D10, D11), LCD (I2C).
+2. Install `LiquidCrystal_I2C` and `DHT sensor library` in Arduino IDE.
+3. Flash `smart_irrigation_with_adruinoUno/arduino_firmware/main.ino` to the board.
+
+### 2. Software Setup (Python)
+
+**Prerequisite:** Python 3.10 or 3.11.
+
+**Step 1: Install Dependencies**
 
 ```bash
 pip install -r requirements.txt
+
 ```
-#### Bước 2: Cài đặt thư viện Nhận diện khuôn mặt (Quan trọng)
-Thư viện face_recognition yêu cầu dlib (C++). Vui lòng làm theo hướng dẫn tùy theo hệ điều hành:
 
-🟢 Đối với Windows: Việc cài trực tiếp qua pip thường bị lỗi CMake. Hãy cài đặt theo thứ tự sau:
+**Step 2: Install Face Recognition**
+*Note: `face-recognition` requires `dlib`.*
 
-* Cài CMake:
+* **macOS/Linux:** `pip install face-recognition`
+* **Windows:**
+1. `pip install cmake`
+2. Download the `dlib` .whl file matching your Python version.
+3. `pip install <path_to_dlib.whl>`
+4. `pip install face-recognition`
+
+
+
+**Step 3: Security Configuration**
+
+1. Take a clear portrait photo of yourself.
+2. Rename it to `owner.jpg`.
+3. Place it in the `smart_irrigation_with_adruinoUno/src` directory.
+
+**Step 4: Launch**
+Connect the Arduino via USB and run:
 
 ```bash
-pip install cmake
+streamlit run src/app.py
+
 ```
-1. Cài đặt Dlib (Pre-compiled):
 
-2. Tải file .whl tương ứng với phiên bản Python của bạn tại đây.
+## Credits
 
-    * Ví dụ Python 3.11: Tải dlib-19.24.99-cp311-cp311-win_amd64.whl.
-
-3. Cài đặt file vừa tải:
-
-```bash
-pip install đường_dẫn_đến_file_dlib_vừa_tải.whl
-```
-4. Sau đó mới cài thư viện chính:
-
-```bash
-pip install face-recognition
-```
-🍎 Đối với macOS / 🐧 Linux: Chỉ cần chạy lệnh đơn giản:
-```bash
-pip install face-recognition
-```
-#### Bước 3: Cấu hình An ninh (Security Setup):
-
-1. Chụp một bức ảnh chân dung rõ mặt của bạn.
-
-2. Đổi tên thành owner.jpg.
-
-3. Chép đè vào `smart_irrigation_with_adruinoUno\src` của dự án.
-
-3. Khởi động lại ứng dụng -> Hệ thống sẽ tự động nhận diện bạn là Admin.
-
-#### Bước 4: Khởi chạy ứng dụng
-Kết nối Arduino vào máy tính, sau đó chạy lệnh:
-
-```bash
-streamlit src/run app.py
-```
+Developed by **Nguyen Minh Quang** - University of Science, VNU.
 
 ---
 
-## 🧠 Phương pháp Huấn luyện AI (AI Methodology)
-
-### Random Forest (Tưới tiêu)
-* **Dataset:** Dữ liệu thu thập thực tế + Chuyên gia giả lập (Expert System).
-* **Dataset Path:** smart_irrigation_with_adruinoUno\ai_training\RandomForest\irrigation.csv 
-* **Validation:** Sử dụng **Stratified 5-Fold Cross-Validation** để đánh giá độ ổn định.
-* **Cấu hình tối ưu:** `n_estimators=5`, `max_depth=10` (Độ chính xác ~92.66% trên tập kiểm thử).
-* **Triển khai:** Model được huấn luyện lại trên 100% dữ liệu và transpile sang C (`model.h`).
-
-### YOLOv8 (Thị giác)
-* **Dataset:** Tự thu thập và gán nhãn thủ công cho các lớp: *Coffee, Wheat, Owner, Stranger*.
-* **Dataset Link: https://drive.google.com/file/d/1o6WhIhmDbxElmCeNoEqlcfEF4jM2tlPX/view?usp=sharing**
-* **Training:** Fine-tuning từ `yolo8n.pt`.
-
----
-
-## 📸 Hình ảnh Demo
-
----
-
-## 🤝 Đóng góp
-Dự án được thực hiện bởi **Nguyễn Minh Quang** - Sinh viên University of Science - VNU.
-
-
----
-*If you find this project useful, please give it a star! ⭐*
+*If you find this project useful, please give it a star!*
